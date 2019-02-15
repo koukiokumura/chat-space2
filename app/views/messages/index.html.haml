@@ -1,0 +1,26 @@
+= render partial: "side"
+.main
+  .main__header
+    .main__header-content
+      .main__header-content-title
+        .main__header-content-title__group
+          = @group.name
+        = link_to "edit", edit_group_path(@group), class: "main__header-content-title__btn"
+        .main__header-content-title-name
+          Member:
+          - @group.users.each do |user|
+            = user.name
+  .main__container
+    .main__container-content
+      = render @messages
+  .footer
+    .footer__container
+      .footer__container-form
+        = form_for [@group, @message], html: {id: 'new_message'},remote: true do |f|
+          = f.text_field :content, class: 'footer__container-form--message', placeholder: 'type a message'
+          .footer__container-form--image
+            = f.label :image, class: 'form__mask__image' do
+              = fa_icon 'picture-o', class: 'icon'
+              = f.file_field :image, class: 'hidden'
+          .footer__container-form--space
+          = f.submit 'Send', class: 'footer__container-form-btn'
