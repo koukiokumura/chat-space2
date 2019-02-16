@@ -65,7 +65,9 @@ $(function(){
     })
     .done(function(messageId) {
       messageId.forEach(function(message) {
+        if (message.id > messageId ){
         insertHTML += buildHTML(message);
+        }
       });
       $('.main__container-content').append(insertHTML);
     scrollToNewest()
