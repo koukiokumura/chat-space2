@@ -31,6 +31,9 @@ class GroupsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def group_params
